@@ -10,31 +10,24 @@ Design a Moore finite state machine traffic light controller using SystemVerilog
 |---|---|
 | clk | System clock |
 | reset | Reset signal |
-| ped_button | Pedestrian crossing request |
-| emergency | Emergency override |
 
 ## Outputs
 
 | Signal | Description |
 |---|---|
-| main_red | Main road red light |
-| main_yellow | Main road yellow light |
-| main_green | Main road green light |
-| side_red | Side road red light |
-| side_yellow | Side road yellow light |
-| side_green | Side road green light |
-| ped_walk | Pedestrian walk signal |
+| clk_100mhz | 100 MHz onboard clock |
+| reset_btn | Center pushbutton reset |
 
 ## FSM States
 
 | State | Description |
 |---|---|
-| MAIN_GREEN | Main road green, side road red |
-| MAIN_YELLOW | Main road yellow transition |
-| SIDE_GREEN | Side road green, main road red |
-| SIDE_YELLOW | Side road yellow transition |
-| PED_WALK | Both roads red, pedestrian walk active |
-| EMERGENCY | Both roads red, emergency mode active |
+| A_GREEN | Main road green, side road red |
+| A_YELLOW | Main road yellow transition |
+| ALL_RED_1 | Road A yellow, Road B red |
+| B_GREEN | Road B green, Road A red |
+| B_YELLOW | Road B yellow, Road A red |
+| ALL_RED_2 | Both roads red |
 
 ## Learning Goals
 
