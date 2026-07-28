@@ -68,3 +68,82 @@ constraints/
 
 docs/
 └── simulation_waveform.png
+
+## Simulation
+
+A systemVerilog testbench was created to:
+- Generate the 100 MHz input clock
+- Apply the reset signal
+- Allow the controller to run through multiple states
+- Observe all six traffic-light outputs
+
+For simulation, the clock-enable counter limit was temporarily reduced so that state transitions could be observed without simulating 100 million clock cycles.
+
+The counter was restored to its full hardware value before generating the FPGA bitstream.
+
+![Behavioral simulation waveform](docs/simulation_waveform.png)
+
+The waveform confirms that:
+
+- Road A follows green, yellow, and red states
+- Road B follows green, yellow, and red states
+- The two green signals are never active simultaneously
+- The sequence repeats correctly
+
+## Challenges and Solutions
+
+### Module-name mismatch
+
+The clock-enable module was initially not detected by Vivado because the module name contained a spelling error.
+
+The module declaration was corrected so that the name exactly matched the module instantiated in the top-level design.
+
+### Port-name mismatch
+
+Vivado reported that it could not find the `one_second_tick` port. This was resolved by checking that the port name matched exactly between the module declaration and the top-level module instance.
+
+### Long simulation time
+
+The original clock-enable counter waited for 100 million clock cycles before producing a tick. This is appropriate for physical hardware but made behavioral simulation unnecessarily slow.
+
+For simulation, the counter terminal value was temporarily reduced. This allowed the complete traffic-light sequence to be viewed within a few microseconds.
+
+### Understanding source types
+
+The RTL modules were added as design sources, while the testbench was added separately as a simulation source. This helped separate synthesizable hardware logic from simulation-only code.
+
+## What I Learned
+
+Through this project, I gained experience with:
+
+- Designing a Moore finite-state machine
+- Writing synthesizable SystemVerilog
+- Creating hierarchical hardware modules
+- Instantiating and connecting modules
+- Generating clock-enable pulses
+- Writing a behavioral testbench
+- Reading simulation waveforms
+- Debugging module and port-name errors
+- Creating FPGA pin constraints
+- Running synthesis, implementation, and bitstream generation in Vivado
+- Organizing an FPGA project for GitHub
+
+## FPGA Implementation
+
+The design successfully completed:
+
+- Behavioral simulation
+- Synthesis
+- Implementation
+- Bitstream generation
+
+Physical testing on the Nexys A7 board is pending.
+
+## Tools Used
+
+- SystemVerilog
+- AMD Vivado
+- Digilent Nexys A7
+- Git
+- GitHub
+
