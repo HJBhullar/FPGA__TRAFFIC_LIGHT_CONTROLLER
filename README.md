@@ -54,7 +54,7 @@ The top-level module connects the clock-enable generator to the traffic-light fi
 
 ## Project Structure
 
-```text
+
 rtl/
 ├── clock_enable.sv
 ├── traffic_light_fsm.sv
