@@ -54,7 +54,7 @@ The top-level module connects the clock-enable generator to the traffic-light fi
 
 ## Project Structure
 
-
+'''text
 rtl/
 ├── clock_enable.sv
 ├── traffic_light_fsm.sv
@@ -68,10 +68,10 @@ constraints/
 
 docs/
 └── simulation_waveform.png
-
+'''
 ## Simulation
 
-A systemVerilog testbench was created to:
+A SystemVerilog testbench was created to:
 - Generate the 100 MHz input clock
 - Apply the reset signal
 - Allow the controller to run through multiple states
